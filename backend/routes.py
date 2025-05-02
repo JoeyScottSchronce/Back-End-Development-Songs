@@ -68,6 +68,16 @@ def count():
 
 @app.route("/song", methods=["GET"])
 def list_all_songs():
+    """Returns a list of all songs"""
     all_songs = list(db.songs.find({}))
     return {"all songs": parse_json(all_songs)}, 200
+
+@app.route("/song/<int:id>", methods=["GET"])
+def get_song_by_id(id):
+    """Returns a song based on the song id"""
+    
+    song = db.songs.find_one({"id": id})
+    if not song:
+        return {"message": f"Song with id ({id}) not found"}, 404
+    return parse_json(song), 200
 
