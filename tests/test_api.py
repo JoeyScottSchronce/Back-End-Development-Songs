@@ -58,3 +58,14 @@ def test_update_a_song_by_id(client, song):
     assert res.status_code == 200
     assert res.json['title'] == updated_song["title"]
     
+def test_delete_a_song_by_id(client, song):
+    res = client.get("/song/1")
+    assert res.status_code == 200
+    song_id = res.json["id"]
+
+    res = client.delete(f"/song/{song_id}")
+    assert res.status_code == 204
+
+    res = client.delete("/song/404")
+    assert res.status_code == 404
+
