@@ -94,5 +94,16 @@ def create_a_song():
     insert_id: InsertOneResult = db.songs.insert_one(new_song)
     return {"inserted id": parse_json(insert_id.inserted_id)}, 201
 
+@app.route("/song/<int:id>", methods=["PUT"])
+def update_a_song(id):
+    update = request.json
+    old_song = db.songs.find_one({"id": id})
 
+    if old_song == None:
+        return {"message": "Song not found"}, 404
 
+    updated = {"$set": update}
+    result = db.songs.update_one({"id": id}, updated)
+
+    return parse_json(db.songs.find_one({"id": id})), 201
+    
