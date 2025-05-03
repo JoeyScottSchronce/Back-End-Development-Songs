@@ -32,7 +32,7 @@ def test_song_json_is_not_empty(client):
     res = client.get("/song")
     assert len(res.json) > 0
 
-def test_post_a_song(song, client):
+def test_post_a_song(client, song):
     res = client.post("/song", json=song)
     assert res.status_code == 201
     assert "inserted id" in res.json
@@ -40,3 +40,21 @@ def test_post_a_song(song, client):
     res = client.post("/song", json=song)
     assert res.status_code == 302
     assert f"Song with id {song['id']} already exists" in res.json["message"]
+
+def test_update_a_song_by_id(client, song):
+    id = song["id"]
+    res = client.get(f'/song/{id}')
+    assert res.status_code == 200
+    assert res.json['id'] == id
+
+    updated_song = song.copy()
+    updated_song["title"] = "This is a test"
+
+    res = client.put(f'/song/{id}', data=json.dumps(updated_song),
+                     content_type="application/json")
+    assert res.status_code == 201
+
+    res = client.get(f'/song/{id}')
+    assert res.status_code == 200
+    assert res.json['title'] == updated_song["title"]
+    
