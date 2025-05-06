@@ -1,10 +1,10 @@
 # Pin dependencies that might cause breakage
-Werkzeug==2.1.2
+Werkzeug==3.0.3
 SQLAlchemy==1.4.46
 pymongo
 
 # Build dependencies
-Flask==2.1.2
+Flask==2.2.5
 Flask-SQLAlchemy==2.5.1
 psycopg2-binary==2.9.3
 python-dotenv==0.20.0
@@ -12,7 +12,7 @@ Flask-Talisman
 Flask-CORS
 
 # Runtime dependencies
-gunicorn==20.1.0
+gunicorn==23.0.0
 honcho==1.1.0
 
 # Code quality
@@ -30,4 +30,5 @@ pytest
 coverage==6.3.2
 
 # Utilities
-httpie==3.2.1
+httpie==3.2.3
+setuptools>=78.1.1 # not directly required, pinned by Snyk to avoid a vulnerability
