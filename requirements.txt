@@ -32,3 +32,4 @@ coverage==6.3.2
 # Utilities
 httpie==3.2.3
 setuptools>=78.1.1 # not directly required, pinned by Snyk to avoid a vulnerability
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
