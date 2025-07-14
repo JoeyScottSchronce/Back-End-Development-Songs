@@ -33,3 +33,4 @@ coverage==6.3.2
 httpie==3.2.3
 setuptools>=78.1.1 # not directly required, pinned by Snyk to avoid a vulnerability
 zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
+urllib3>=2.5.0 # not directly required, pinned by Snyk to avoid a vulnerability
